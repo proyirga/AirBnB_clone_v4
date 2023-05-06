@@ -8,6 +8,10 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/6-filters.css') + '?' + cache_id }}">
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/8-places.css') + '?' + cache_id }}">
     <link rel="icon" href="{{ url_for('static', filename='images/icon.png') + '?' + cache_id }}">
+    <!--JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/1-hbnb.js') + '?' + cache_id }}"></script>
+
     <title>HBnB</title>
   </head>
   <body>
@@ -34,13 +38,18 @@
 	    </ul>
 	  </div>
 	</div>
+
+	<!--amenities-->
 	<div class="amenities">
 	  <h3>Amenities</h3>
 	  <h4>&nbsp;</h4>
 	  <div class="popover">
 	    <ul>
-	      {% for amenity in amenities %}
-	      <li>{{ amenity.name }}</li>
+	      {% for amenity in amens|sort(attribute='name') %}
+	      <li>
+		      <input type="checkbox" data-id="{{ amenity.name }}" data-name="{{ amenity.name }}"> {{ amenity.name }}
+		      </input>
+	      </li>
 	      {% endfor %}
 	    </ul>
 	  </div>
